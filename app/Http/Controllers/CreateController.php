@@ -40,7 +40,7 @@ class CreateController extends Controller
 
         $listing = new Listing();
         $data['listing'] = $listing;
-        $categories = Category::nested()->get();
+        $categories = Category::nested()->orderBy('order')->get();
         $categories = flatten($categories, 0);
         $list = [];
         foreach($categories as $category) {
