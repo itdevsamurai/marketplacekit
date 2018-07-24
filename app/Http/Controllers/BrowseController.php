@@ -173,13 +173,13 @@ class BrowseController extends Controller
         $this->categories = $categories;
         $category = Category::find($category_id); //current category
 
-        $level_categories = Category::where('parent_id', $category_id)->orderBy('order')->get(); //categories on this level
+        $level_categories = Category::where('parent_id', $category_id)->get(); //categories on this level
         $parent_categories = $this->getParentCategories($category_id);
         if(count($level_categories) == 0 && $category) {
-            $level_categories = Category::where('parent_id', $category->parent_id)->orderBy('order')->get();
-            $parent_categories = Category::whereIn('id', $parent_categories)->orderBy('order')->get();
+            $level_categories = Category::where('parent_id', $category->parent_id)->get();
+            $parent_categories = Category::whereIn('id', $parent_categories)->get();
         } else {
-            $parent_categories = Category::whereIn('id', array_merge([$category_id], $parent_categories))->orderBy('order')->get();
+            $parent_categories = Category::whereIn('id', array_merge([$category_id], $parent_categories))->get();
         }
         $data['parent_categories'] = $parent_categories;
         $data['level_categories'] = $level_categories;
