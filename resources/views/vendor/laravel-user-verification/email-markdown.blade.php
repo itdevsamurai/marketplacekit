@@ -1,11 +1,11 @@
 @component('mail::message')
 
-You're well on your way to setting up your {{ config('app.name') }} account. We just need to verify your email. Click the button below to let us know this is really you.
+Bạn đang sắp hoàn thành việc đăng kí thành viên với {{ config('app.name') }} rồi đấy. Chỉ còn một bước nhỏ nữa là bạn hãy bấm vào liên kết sau để xác nhận địa chỉ email của bạn nhé
 
 @component('mail::button', ['url' => route('email-verification.check', $user->verification_token) . '?email=' . urlencode($user->email) ])
-Click here to verify your account
+Xác nhận địa chỉ email
 @endcomponent
 
-Thanks,<br>
+Thân ái,<br>
 {{ config('app.name') }}
 @endcomponent
